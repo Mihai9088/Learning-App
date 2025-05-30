@@ -12,7 +12,7 @@ const Page = () => {
 
       <section className="home-section">
         <CompanionCard
-          id="123"
+          id="1"
           name="Neura"
           topic="Neural network"
           subject="science"
@@ -20,7 +20,7 @@ const Page = () => {
           color="#ffda6e"
         />
         <CompanionCard
-          id="456"
+          id="2"
           name="Count"
           topic="Derivatives"
           subject="science"
@@ -28,7 +28,7 @@ const Page = () => {
           color="#e5d0ff"
         />
         <CompanionCard
-          id="789"
+          id="3"
           name="Verba"
           topic="Language"
           subject="English"
