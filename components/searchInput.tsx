@@ -9,12 +9,11 @@ const SearchInput = () => {
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
-  const query = searchParams.get("topic") || "";
 
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
-    const delayDebounceFn = setTimeout(() => {
+    const timeout = setTimeout(() => {
       if (searchQuery) {
         const newUrl = formUrlQuery({
           params: searchParams.toString(),
@@ -34,6 +33,8 @@ const SearchInput = () => {
         }
       }
     }, 500);
+
+    return () => clearTimeout(timeout);
   }, [searchQuery, router, searchParams, pathname]);
 
   return (
@@ -48,4 +49,5 @@ const SearchInput = () => {
     </div>
   );
 };
+
 export default SearchInput;

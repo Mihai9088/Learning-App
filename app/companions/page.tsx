@@ -3,7 +3,6 @@ import SearchInput from "@/components/searchInput";
 import SubjectFilter from "@/components/subjectFilter";
 import { getAllCompanions } from "@/lib/actions/companion.actions";
 import { getSubjectColor } from "@/lib/utils";
-import { Search } from "lucide-react";
 import React from "react";
 
 const CompanionsLibrary = async ({ searchParams }: SearchParams) => {

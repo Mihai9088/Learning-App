@@ -40,7 +40,7 @@ const CompanionComponent = ({
         lottieRef.current?.stop();
       }
     }
-  }, [isSpeaking, lottieRef]);
+  }, [isSpeaking]);
 
   useEffect(() => {
     const onCallStart = () => setCallStatus(CallStatus.ACTIVE);
@@ -59,7 +59,6 @@ const CompanionComponent = ({
 
     const onSpeechStart = () => setIsSpeaking(true);
     const onSpeechEnd = () => setIsSpeaking(false);
-
     const onError = (error: Error) => console.log("Error", error);
 
     vapi.on("call-start", onCallStart);
@@ -77,6 +76,7 @@ const CompanionComponent = ({
       vapi.off("speech-start", onSpeechStart);
       vapi.off("speech-end", onSpeechEnd);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const toggleMicrophone = () => {
@@ -94,7 +94,7 @@ const CompanionComponent = ({
       serverMessages: [],
     };
 
-    // @ts-expect-error
+    // @ts-expect-error: vapi.start expects specific assistant format not typed here
     vapi.start(configureAssistant(voice, style), assistantOverrides);
   };
 
@@ -205,7 +205,7 @@ const CompanionComponent = ({
             if (message.role === "assistant") {
               return (
                 <p key={index} className="max-sm:text-sm">
-                  {name.split(" ")[0].replace("/[.,]/g, ", "")}:{" "}
+                  {name.split(" ")[0].replace("/[.,]/g", ",")}:{" "}
                   {message.content}
                 </p>
               );
@@ -218,7 +218,6 @@ const CompanionComponent = ({
             }
           })}
         </div>
-
         <div className="transcript-fade" />
       </section>
     </section>
